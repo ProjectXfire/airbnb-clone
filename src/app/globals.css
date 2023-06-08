@@ -6,10 +6,12 @@
     'Courier New', monospace;
   --primary-color: rgb(62, 12, 142);
   --logo-color: rgb(193, 69, 44);
+  --red-color: rgb(152, 29, 29);
+  --red-light-color: rgb(241, 81, 81);
   --secondary-color: rgb(156, 133, 178);
   --white-color: white;
   --box-color: rgb(24, 8, 48);
-  --box-color2: rgb(34, 14, 65);
+  --box-color2: rgb(62, 18, 127);
   --background: radial-gradient(
     circle,
     rgba(8, 8, 62, 1) 0%,

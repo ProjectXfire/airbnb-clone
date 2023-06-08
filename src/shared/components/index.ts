@@ -1,5 +1,10 @@
 export { default as Container } from './Container';
+export { default as Divider } from './Divider';
+export { default as Loading } from './Loading';
+export { default as Modal } from './modals/Modal';
+export { default as DropdownContainer } from './navbar/DropdownContainer';
 export { default as Logo } from './navbar/Logo';
 export { default as Navbar } from './navbar/Navbar';
 export { default as Search } from './navbar/Search';
 export { default as UserMenu } from './navbar/UserMenu';
+export { default as Button } from './Button';

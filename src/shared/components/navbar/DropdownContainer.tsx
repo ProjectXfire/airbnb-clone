@@ -2,10 +2,18 @@
 
 import { type RefObject } from 'react';
 import styles from '@shared/styles/navbar/DropdownContainer.module.scss';
+import type { StoreApi, UseBoundStore } from 'zustand';
+import type { AuthModalStore } from '@/modules/auth/models';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
   ddRef: RefObject<HTMLDivElement>;
+}
+
+interface ItemProps {
+  text: string;
+  onClick?: () => void;
+  useModalStore: UseBoundStore<StoreApi<AuthModalStore>>;
 }
 
 function DropdownContainer({ children, ddRef }: Props): JSX.Element {
@@ -15,4 +23,24 @@ function DropdownContainer({ children, ddRef }: Props): JSX.Element {
     </div>
   );
 }
+
+function DropdownItemModal({ text, onClick, useModalStore }: ItemProps): JSX.Element {
+  const { onOpen } = useModalStore();
+
+  const onMenuItemClick = (): void => {
+    onOpen();
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  return (
+    <p className={styles['dropdown-item']} onClick={onMenuItemClick}>
+      {text}
+    </p>
+  );
+}
+
+DropdownContainer.DropdownItemModal = DropdownItemModal;
+
 export default DropdownContainer;

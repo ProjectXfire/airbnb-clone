@@ -1,0 +1,45 @@
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.label {
+  position: absolute;
+  top: 17px;
+  left: 12px;
+  font-size: 0.9rem;
+  color: rgb(199, 199, 199);
+  transform: scale(1);
+  transform-origin: 0 0;
+  transition: all 300ms;
+}
+.input {
+  padding: 18px 10px;
+  outline: none;
+  border: 2px solid var(--secondary-color);
+  border-radius: 8px;
+}
+
+.input:focus + .label {
+  top: 4px;
+  transform: scale(0.75);
+}
+
+.has-text {
+  top: 4px;
+  transform: scale(0.75);
+}
+
+.span {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--red-light-color);
+}
+
+.error {
+  border: 2px solid var(--red-color);
+}

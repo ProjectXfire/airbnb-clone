@@ -1,0 +1,79 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.modal-container {
+  position: relative;
+  width: 95%;
+  max-width: 600px;
+  padding: 10px;
+  padding-bottom: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid var(--secondary-color);
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  animation: fadeIn 500ms ease forwards;
+}
+
+.hide-modal {
+  animation: fadeOut 500ms ease forwards;
+}
+
+.modal-header {
+  padding: 5px 0px;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-actions {
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 5px;
+  & button {
+    outline: none;
+    border: 1.5px solid transparent;
+    color: var(--white-color);
+    padding: 3px;
+    position: absolute;
+    display: flex;
+    top: 10px;
+    border-radius: 50%;
+    background-color: var(--red-color);
+    font-size: 1.2rem;
+    &:hover {
+      background-color: var(--red-light-color);
+      border: 1.5px solid var(--red-color);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

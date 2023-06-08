@@ -1,0 +1,40 @@
+.custom-button {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: 2px solid var(--box-color);
+  border-radius: 8px;
+  font-weight: bold;
+  background-color: var(--box-color);
+  color: var(--white-color);
+  &:hover {
+    background-color: var(--box-color2);
+  }
+  & p {
+    flex: 1;
+    margin-right: 40px;
+  }
+  & img {
+    margin: 0px 10px;
+    width: 30px;
+    height: 30px;
+  }
+  & div:first-child {
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+  }
+}
+
+.no-margin {
+  & p {
+    margin: 0px;
+  }
+}
