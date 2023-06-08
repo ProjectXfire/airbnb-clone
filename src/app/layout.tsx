@@ -1,6 +1,7 @@
 import './globals.css';
 import { nunito } from '@/shared/utilities';
 import { Navbar } from '@/shared/components';
+import { ToasterProvider } from '@/shared/providers';
 
 export const metadata = {
   title: 'Airbnb clone',
@@ -11,6 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
   return (
     <html lang='en'>
       <body className={nunito.className}>
+        <ToasterProvider />
         <Navbar /> {children}
       </body>
     </html>

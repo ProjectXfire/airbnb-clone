@@ -1,0 +1,18 @@
+.form-footer {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  & button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

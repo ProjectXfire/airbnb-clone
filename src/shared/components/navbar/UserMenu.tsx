@@ -4,15 +4,17 @@ import NextImage from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import styles from '@shared/styles/navbar/UserMenu.module.scss';
-import DropdownContainer from './DropdownContainer';
+import { useRegisterModal, useLoginModal } from '@/modules/auth/hooks';
+import { DropdownContainer } from '@shared/components';
 
 function UserMenu(): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLButtonElement>(null);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const handleMenu = (): void => {
-    setIsOpen((cv) => !cv);
+    setIsMenuOpen((cv) => !cv);
   };
 
   const checkIfClickedOutsideDropdown = (e: any): void => {
@@ -20,7 +22,7 @@ function UserMenu(): JSX.Element {
     if (dropdownRef.current.contains(e.target)) return;
     if (menuRef.current.contains(e.target)) return;
     if (!dropdownRef.current.contains(e.target)) {
-      setIsOpen((cv) => (cv = false));
+      setIsMenuOpen((cv) => (cv = false));
     }
   };
 
@@ -32,28 +34,40 @@ function UserMenu(): JSX.Element {
   }, []);
 
   return (
-    <div className={styles['user-menu']}>
-      <div className={styles['user-menu__items']}>
-        <button type='button' className={styles['']}>
-          Airbnb your home
-        </button>
-        <button ref={menuRef} type='button' className={styles['']} onClick={handleMenu}>
-          <MdMenu />
-          <NextImage width={30} height={30} src='/images/placeholder.jpg' alt='user-image' />
-        </button>
-        <button type='button'>
-          <MdMenu />
-        </button>
+    <>
+      <div className={styles['user-menu']}>
+        <div className={styles['user-menu__items']}>
+          <button type='button' className={styles['']}>
+            Airbnb your home
+          </button>
+          <button ref={menuRef} type='button' className={styles['']} onClick={handleMenu}>
+            <MdMenu />
+            <NextImage width={30} height={30} src='/images/placeholder.jpg' alt='user-image' />
+          </button>
+          <button type='button'>
+            <MdMenu />
+          </button>
+        </div>
+        {isMenuOpen && (
+          <DropdownContainer ddRef={dropdownRef}>
+            <DropdownContainer.DropdownItemModal
+              text='Sign in'
+              useModalStore={useLoginModal}
+              onClick={() => {
+                setIsMenuOpen(false);
+              }}
+            />
+            <DropdownContainer.DropdownItemModal
+              text='Sign up'
+              useModalStore={useRegisterModal}
+              onClick={() => {
+                setIsMenuOpen(false);
+              }}
+            />
+          </DropdownContainer>
+        )}
       </div>
-      {isOpen && (
-        <DropdownContainer ddRef={dropdownRef}>
-          <p>Login</p>
-          <p>Login</p>
-          <p>Login</p>
-          <p>Login</p>
-        </DropdownContainer>
-      )}
-    </div>
+    </>
   );
 }
 export default UserMenu;
