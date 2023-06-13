@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { type NewUserDto } from '@modules/auth/dtos';
+import { registerUser } from '@modules/auth/services';
 import { useRegisterModal, useLoginModal } from '@modules/auth/hooks';
 import { FooterForm, RegisterForm } from '@modules/auth/components';
 import { Modal } from '@shared/components';
@@ -13,15 +14,14 @@ function RegisterModal(): JSX.Element {
   const { onOpen } = useLoginModal();
 
   const onSubmit = async (payload: NewUserDto): Promise<void> => {
-    try {
-      console.log(payload);
-      setIsLoading(true);
+    setIsLoading(true);
+    const res = await registerUser(payload);
+    if (res.error) toast.error(res.error);
+    if (res.data) {
+      toast.success('Successfully registered');
       onCLose();
-    } catch (error) {
-      toast.error('Register has failed');
-    } finally {
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   const onNavigateModal = (): void => {
@@ -40,6 +40,7 @@ function RegisterModal(): JSX.Element {
       }}
     >
       <RegisterForm
+        onLoading={isLoading}
         onSubmit={(values) => {
           onSubmit(values);
         }}

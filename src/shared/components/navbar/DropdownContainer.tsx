@@ -13,7 +13,7 @@ interface Props {
 interface ItemProps {
   text: string;
   onClick?: () => void;
-  useModalStore: UseBoundStore<StoreApi<AuthModalStore>>;
+  useModalStore?: UseBoundStore<StoreApi<AuthModalStore>>;
 }
 
 function DropdownContainer({ children, ddRef }: Props): JSX.Element {
@@ -25,10 +25,10 @@ function DropdownContainer({ children, ddRef }: Props): JSX.Element {
 }
 
 function DropdownItemModal({ text, onClick, useModalStore }: ItemProps): JSX.Element {
-  const { onOpen } = useModalStore();
+  const modalStore = useModalStore ? useModalStore() : null;
 
   const onMenuItemClick = (): void => {
-    onOpen();
+    if (modalStore) modalStore.onOpen();
     if (onClick) {
       onClick();
     }

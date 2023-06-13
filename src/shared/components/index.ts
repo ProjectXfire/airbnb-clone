@@ -8,3 +8,4 @@ export { default as Navbar } from './navbar/Navbar';
 export { default as Search } from './navbar/Search';
 export { default as UserMenu } from './navbar/UserMenu';
 export { default as Button } from './Button';
+export { default as Avatar } from './Avatar';

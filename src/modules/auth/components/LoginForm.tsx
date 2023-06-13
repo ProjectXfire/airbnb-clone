@@ -9,9 +9,10 @@ import { Button } from '@/shared/components';
 
 interface Props {
   onSubmit: (values: LoginUserDto) => void;
+  onLoading?: boolean;
 }
 
-function LoginForm({ onSubmit }: Props): JSX.Element {
+function LoginForm({ onSubmit, onLoading = false }: Props): JSX.Element {
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
@@ -38,7 +39,7 @@ function LoginForm({ onSubmit }: Props): JSX.Element {
             errorMessage={errors.password}
             error={!!errors.password && !!touched.password}
           />
-          <Button type='submit' text='Sign In' />
+          <Button type='submit' text='Sign In' disabled={onLoading} />
         </Form>
       )}
     </Formik>

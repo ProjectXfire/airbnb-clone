@@ -1,14 +1,19 @@
+import { type UserModel } from '@/shared/models';
 import styles from '@shared/styles/navbar/Navbar.module.scss';
 import { Container, Logo, Search, UserMenu } from '@shared/components';
 
-function Navbar(): JSX.Element {
+interface Props {
+  user: UserModel | null;
+}
+
+function Navbar({ user }: Props): JSX.Element {
   return (
     <nav className={styles.nav}>
       <Container>
         <div className={styles['nav-items']}>
           <Logo />
           <Search />
-          <UserMenu />
+          <UserMenu user={user} />
         </div>
       </Container>
     </nav>

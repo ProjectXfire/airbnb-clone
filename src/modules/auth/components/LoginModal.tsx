@@ -1,26 +1,30 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import { useLoginModal, useRegisterModal } from '@modules/auth/hooks';
 import { type LoginUserDto } from '@modules/auth/dtos';
 import { Button, Divider, Modal } from '@shared/components';
 import { FooterForm, LoginForm } from '@modules/auth/components';
+import { loginUser, signInWithGithub, signInWithGoogle } from '@modules/auth/services';
 
 function LoginModal(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onCLose } = useLoginModal();
+  const router = useRouter();
   const { onOpen } = useRegisterModal();
 
   const onSubmit = async (payload: LoginUserDto): Promise<void> => {
-    try {
-      setIsLoading(true);
+    setIsLoading(true);
+    const res = await loginUser(payload);
+    if (res.error) toast.error(res.error);
+    if (!res.error) {
+      toast.success('Successfully login');
+      router.refresh();
       onCLose();
-    } catch (error) {
-      toast.error('Register has failed');
-    } finally {
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   const onNavigateModal = (): void => {
@@ -39,22 +43,29 @@ function LoginModal(): JSX.Element {
       }}
     >
       <LoginForm
+        onLoading={isLoading}
         onSubmit={(values) => {
           onSubmit(values);
         }}
       />
       <Divider />
       <Button
+        disabled={isLoading}
         type='button'
         text='Continue with Google'
         icon='/images/google.svg'
-        onClick={() => {}}
+        onClick={() => {
+          signInWithGoogle();
+        }}
       />
       <Button
+        disabled={isLoading}
         type='button'
         text='Continue with Github'
         icon='images/github.svg'
-        onClick={() => {}}
+        onClick={() => {
+          signInWithGithub();
+        }}
       />
       <FooterForm text='Create an account' actionText='here' onClick={onNavigateModal} />
     </Modal>
