@@ -1,16 +1,20 @@
 'use client';
 
-import NextImage from 'next/image';
+import { type UserModel } from '@/shared/models';
+import { signOut } from 'next-auth/react';
 import { useEffect, useRef, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import styles from '@shared/styles/navbar/UserMenu.module.scss';
 import { useRegisterModal, useLoginModal } from '@/modules/auth/hooks';
-import { DropdownContainer } from '@shared/components';
+import { Avatar, DropdownContainer } from '@shared/components';
 
-function UserMenu(): JSX.Element {
+interface Props {
+  user: UserModel | null;
+}
+
+function UserMenu({ user }: Props): JSX.Element {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLButtonElement>(null);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenu = (): void => {
@@ -38,11 +42,11 @@ function UserMenu(): JSX.Element {
       <div className={styles['user-menu']}>
         <div className={styles['user-menu__items']}>
           <button type='button' className={styles['']}>
-            Airbnb your home
+            Airbnb my home
           </button>
           <button ref={menuRef} type='button' className={styles['']} onClick={handleMenu}>
             <MdMenu />
-            <NextImage width={30} height={30} src='/images/placeholder.jpg' alt='user-image' />
+            <Avatar avatar={user?.image} />
           </button>
           <button type='button'>
             <MdMenu />
@@ -50,20 +54,64 @@ function UserMenu(): JSX.Element {
         </div>
         {isMenuOpen && (
           <DropdownContainer ddRef={dropdownRef}>
-            <DropdownContainer.DropdownItemModal
-              text='Sign in'
-              useModalStore={useLoginModal}
-              onClick={() => {
-                setIsMenuOpen(false);
-              }}
-            />
-            <DropdownContainer.DropdownItemModal
-              text='Sign up'
-              useModalStore={useRegisterModal}
-              onClick={() => {
-                setIsMenuOpen(false);
-              }}
-            />
+            {user !== null ? (
+              <>
+                <DropdownContainer.DropdownItemModal
+                  text='My Trips'
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                />
+                <DropdownContainer.DropdownItemModal
+                  text='My Favorites'
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                />
+                <DropdownContainer.DropdownItemModal
+                  text='My reservations'
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                />
+                <DropdownContainer.DropdownItemModal
+                  text='My properties'
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                />
+                <DropdownContainer.DropdownItemModal
+                  text='Airbnb my home'
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                />
+                <hr />
+                <DropdownContainer.DropdownItemModal
+                  text='Sign out'
+                  onClick={() => {
+                    signOut();
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <DropdownContainer.DropdownItemModal
+                  text='Sign in'
+                  useModalStore={useLoginModal}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                />
+                <DropdownContainer.DropdownItemModal
+                  text='Sign up'
+                  useModalStore={useRegisterModal}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                />
+              </>
+            )}
           </DropdownContainer>
         )}
       </div>
