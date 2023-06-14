@@ -3,7 +3,7 @@
 import styles from '@shared/styles/Container.module.scss';
 
 interface Props {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 function Container({ children }: Props): JSX.Element {

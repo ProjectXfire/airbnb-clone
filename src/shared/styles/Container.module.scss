@@ -1,11 +1,7 @@
 .container {
-  width: 100%;
+  max-width: var(--max-width);
   margin-right: auto;
   margin-left: auto;
   padding-left: 4px;
   padding-right: 4px;
-  @media (min-width: 768px) {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
 }

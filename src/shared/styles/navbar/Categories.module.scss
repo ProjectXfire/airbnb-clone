@@ -1,0 +1,17 @@
+.categories {
+  padding: 8px 15px;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  border: 1px solid var(--secondary-color);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.category-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
