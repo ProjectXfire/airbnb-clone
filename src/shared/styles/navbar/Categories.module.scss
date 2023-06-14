@@ -1,0 +1,26 @@
+.categories {
+  padding-bottom: 8px;
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.category-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: white;
+  &:hover {
+    color: var(--secondary-color);
+  }
+}
+
+.is-selected {
+  color: var(--secondary-color);
+}
