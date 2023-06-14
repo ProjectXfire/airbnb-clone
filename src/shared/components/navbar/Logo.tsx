@@ -1,6 +1,6 @@
+import styles from '@shared/styles/navbar/Logo.module.scss';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
-import styles from '@shared/styles/navbar/Logo.module.scss';
 
 function Logo(): JSX.Element {
   return (
