@@ -1,11 +1,12 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useFormik } from 'formik';
+import { type RentModel } from '@modules/places/models';
 import { categories } from '@/shared/utilities';
 import { useRentModal } from '@modules/places/hooks';
-import { Categories, Location } from '@modules/places/components';
+import { Categories, Information, Location } from '@modules/places/components';
 import { Button, Divider, Modal } from '@/shared/components';
-import { useFormik } from 'formik';
 
 enum STEPS {
   CATEGORY = 0,
@@ -19,7 +20,7 @@ enum STEPS {
 function RentModal(): JSX.Element {
   const { isOpen, onCLose } = useRentModal();
   const [step, setStep] = useState<STEPS>(STEPS.CATEGORY);
-  const { handleSubmit, values, setFieldValue, resetForm } = useFormik({
+  const { values, setFieldValue, resetForm } = useFormik<RentModel>({
     initialValues: {
       category: '',
       location: undefined,
@@ -62,6 +63,22 @@ function RentModal(): JSX.Element {
               setFieldValue('location', value, false);
             }}
             value={values.location}
+            center={values.location?.latlng}
+          />
+        )
+      };
+    }
+    if (step === STEPS.INFO) {
+      return {
+        title: 'Share some basics about your place',
+        component: (
+          <Information
+            guestsValue={values.guestCount}
+            roomsValue={values.roomCount}
+            bathroomsValue={values.bathroomCount}
+            onChange={(value, valueType) => {
+              setFieldValue(valueType, value, false);
+            }}
           />
         )
       };
