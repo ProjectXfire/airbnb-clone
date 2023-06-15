@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { type AuthModalStore } from '@modules/auth/models';
+import { type ModalStore } from '@/shared/models';
 
-const useLoginModal = create<AuthModalStore>((set) => ({
+const useLoginModal = create<ModalStore>((set) => ({
   isOpen: false,
   onOpen: () => {
     set({ isOpen: true });

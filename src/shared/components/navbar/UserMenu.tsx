@@ -7,6 +7,7 @@ import { MdMenu } from 'react-icons/md';
 import styles from '@shared/styles/navbar/UserMenu.module.scss';
 import { useRegisterModal, useLoginModal } from '@/modules/auth/hooks';
 import { Avatar, DropdownContainer } from '@shared/components';
+import { useRentModal } from '@/modules/places/hooks';
 
 interface Props {
   user: UserModel | null;
@@ -16,6 +17,8 @@ function UserMenu({ user }: Props): JSX.Element {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLButtonElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { onOpen } = useLoginModal();
+  const { onOpen: onRentOpen } = useRentModal();
 
   const handleMenu = (): void => {
     setIsMenuOpen((cv) => !cv);
@@ -30,6 +33,14 @@ function UserMenu({ user }: Props): JSX.Element {
     }
   };
 
+  const onRent = (): void => {
+    if (user === null) {
+      onOpen();
+    } else {
+      onRentOpen();
+    }
+  };
+
   useEffect(() => {
     document.addEventListener('mousedown', checkIfClickedOutsideDropdown);
     return () => {
@@ -41,8 +52,8 @@ function UserMenu({ user }: Props): JSX.Element {
     <>
       <div className={styles['user-menu']}>
         <div className={styles['user-menu__items']}>
-          <button type='button' className={styles['']}>
-            Airbnb my home
+          <button type='button' className={styles['']} onClick={onRent}>
+            Airbnb your home
           </button>
           <button ref={menuRef} type='button' className={styles['']} onClick={handleMenu}>
             <MdMenu />
@@ -84,6 +95,7 @@ function UserMenu({ user }: Props): JSX.Element {
                   text='Airbnb my home'
                   onClick={() => {
                     setIsMenuOpen(false);
+                    onRentOpen();
                   }}
                 />
                 <hr />

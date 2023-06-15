@@ -1,12 +1,12 @@
 'use client';
 
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { type ReactNode, Suspense, lazy, useEffect, useState } from 'react';
 import { Loading } from '@shared/components';
 
 interface Props {
   isOpen: boolean;
   close: () => void;
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | ReactNode;
   disabled?: boolean;
   title: string;
   subtitle?: string;
