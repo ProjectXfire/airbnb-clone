@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { type RentModel } from '@modules/places/models';
 import { categories } from '@/shared/utilities';
 import { useRentModal } from '@modules/places/hooks';
-import { Categories, Information, Location } from '@modules/places/components';
+import { Categories, Images, Information, Location } from '@modules/places/components';
 import { Button, Divider, Modal } from '@/shared/components';
 
 enum STEPS {
@@ -79,6 +79,19 @@ function RentModal(): JSX.Element {
             onChange={(value, valueType) => {
               setFieldValue(valueType, value, false);
             }}
+          />
+        )
+      };
+    }
+    if (step === STEPS.IMAGES) {
+      return {
+        title: 'Add a photo of your place',
+        component: (
+          <Images
+            onChange={(url) => {
+              setFieldValue('imageSrc', url, false);
+            }}
+            value={values.imageSrc}
           />
         )
       };
