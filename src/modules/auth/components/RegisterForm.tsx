@@ -3,8 +3,7 @@
 import { Form, Formik } from 'formik';
 import { RegisterSchema } from '@modules/auth/schemas';
 import { type NewUserDto } from '@modules/auth/dtos';
-import { InputForm } from '@modules/auth/components';
-import { Button } from '@/shared/components';
+import { Button, InputForm } from '@/shared/components';
 
 interface Props {
   onSubmit: (values: NewUserDto) => void;

@@ -3,6 +3,8 @@ import { nunito } from '@/shared/utilities';
 import { Navbar } from '@/shared/components';
 import { ToasterProvider } from '@/shared/providers';
 import { getCurrentUser } from '@/shared/services';
+import { RegisterModal, LoginModal } from '@/modules/auth/components';
+import { RentModal } from '@/modules/places/components';
 
 export const metadata = {
   title: 'Airbnb clone',
@@ -20,6 +22,9 @@ export default async function RootLayout({
     <html lang='en'>
       <body className={nunito.className}>
         <ToasterProvider />
+        <RegisterModal />
+        <LoginModal />
+        <RentModal />
         <Navbar user={currentUser} /> {children}
       </body>
     </html>

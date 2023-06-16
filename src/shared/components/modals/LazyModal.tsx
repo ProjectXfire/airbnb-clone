@@ -1,10 +1,10 @@
 import styles from '@shared/styles/modal/Modal.module.scss';
 import { MdClose } from 'react-icons/md';
-import { useRef } from 'react';
+import { type ReactNode, useRef } from 'react';
 import Divider from '../Divider';
 
 interface Props {
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | ReactNode;
   disabledActions: boolean;
   close: () => void;
   title: string;

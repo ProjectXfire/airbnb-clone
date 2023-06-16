@@ -1,7 +1,7 @@
-import { create } from 'zustand';
 import { type ModalStore } from '@/shared/models';
+import { create } from 'zustand';
 
-const useRegisterModal = create<ModalStore>((set) => ({
+const useRentModal = create<ModalStore>((set) => ({
   isOpen: false,
   onOpen: () => {
     set({ isOpen: true });
@@ -11,4 +11,4 @@ const useRegisterModal = create<ModalStore>((set) => ({
   }
 }));
 
-export default useRegisterModal;
+export default useRentModal;

@@ -67,7 +67,11 @@ function LoginModal(): JSX.Element {
           signInWithGithub();
         }}
       />
-      <FooterForm text='Create an account' actionText='here' onClick={onNavigateModal} />
+      <FooterForm
+        text='First time using Airbnb?'
+        actionText='Create an account'
+        onClick={onNavigateModal}
+      />
     </Modal>
   );
 }

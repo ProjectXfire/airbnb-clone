@@ -1,0 +1,19 @@
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.map {
+  height: 35vh;
+  border-radius: 8px;
+}
+
+.map-loading {
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: var(--box-color2);
+}
