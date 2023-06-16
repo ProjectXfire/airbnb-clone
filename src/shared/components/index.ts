@@ -11,3 +11,4 @@ export { default as Categories } from './navbar/Categories';
 export { default as CategoryBox } from './navbar/CategoryBox';
 export { default as Button } from './Button';
 export { default as Avatar } from './Avatar';
+export { default as InputForm } from './InputForm';

@@ -1,13 +1,14 @@
-import { type CountryModel } from '@modules/places/models';
-
 export interface RentModel {
+  id: string;
+  userId: string;
+  title: string;
+  description: string;
   category: string;
-  location: undefined | CountryModel;
+  locationValue: string;
+  imageSrc: string;
   guestCount: number;
   roomCount: number;
   bathroomCount: number;
-  imageSrc: string;
   price: number;
-  title: string;
-  description: string;
+  createdAt: string;
 }

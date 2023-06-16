@@ -27,7 +27,8 @@
 }
 
 a,
-button {
+button,
+textarea {
   font-family: inherit;
 }
 

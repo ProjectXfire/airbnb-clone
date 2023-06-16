@@ -2,11 +2,14 @@
 
 import { useMemo, useState } from 'react';
 import { useFormik } from 'formik';
-import { type RentModel } from '@modules/places/models';
+import { toast } from 'react-hot-toast';
+import { type CreateRentDto } from '@modules/places/dtos';
+import { RentSchema } from '@modules/places/schemas';
 import { categories } from '@/shared/utilities';
+import { saveListing } from '@modules/places/services';
 import { useRentModal } from '@modules/places/hooks';
 import { Categories, Images, Information, Location } from '@modules/places/components';
-import { Button, Divider, Modal } from '@/shared/components';
+import { Button, Divider, InputForm, Modal } from '@/shared/components';
 
 enum STEPS {
   CATEGORY = 0,
@@ -20,26 +23,43 @@ enum STEPS {
 function RentModal(): JSX.Element {
   const { isOpen, onCLose } = useRentModal();
   const [step, setStep] = useState<STEPS>(STEPS.CATEGORY);
-  const { values, setFieldValue, resetForm } = useFormik<RentModel>({
-    initialValues: {
-      category: '',
-      location: undefined,
-      guestCount: 1,
-      roomCount: 1,
-      bathroomCount: 1,
-      imageSrc: '',
-      price: 1,
-      title: '',
-      description: ''
-    },
-    onSubmit: (values) => {}
-  });
+  const [isLoading, setIsLoading] = useState(false);
+  const { values, setFieldValue, resetForm, getFieldProps, handleSubmit, validateForm } =
+    useFormik<CreateRentDto>({
+      initialValues: {
+        category: '',
+        location: undefined,
+        guestCount: 1,
+        roomCount: 1,
+        bathroomCount: 1,
+        imageSrc: '',
+        price: 1,
+        title: '',
+        description: ''
+      },
+      validationSchema: RentSchema,
+      onSubmit: async (values) => {
+        setIsLoading(true);
+        const { error } = await saveListing(values);
+        if (error) {
+          toast.error(error);
+        } else {
+          toast.success('Listing created!');
+          onResetForm();
+        }
+        setIsLoading(false);
+      }
+    });
 
   const onBack = (): void => {
     setStep((cv) => cv - 1);
   };
 
   const onNext = (): void => {
+    if (step === STEPS.PRICE) {
+      onCreate();
+      return;
+    }
     setStep((cv) => cv + 1);
   };
 
@@ -52,6 +72,20 @@ function RentModal(): JSX.Element {
     if (step === STEPS.CATEGORY) return null;
     return 'Back';
   }, [step]);
+
+  const onCreate = async (): Promise<void> => {
+    const hasErrors = await validateForm();
+    if (Object.keys(hasErrors).length > 0) {
+      toast.error('Some fields are missing, please fill all!');
+    }
+    handleSubmit();
+  };
+
+  const onResetForm = (): void => {
+    onCLose();
+    resetForm();
+    setStep(STEPS.CATEGORY);
+  };
 
   const renderSteps = useMemo(() => {
     if (step === STEPS.LOCATION) {
@@ -96,6 +130,45 @@ function RentModal(): JSX.Element {
         )
       };
     }
+    if (step === STEPS.DESCRIPTION) {
+      return {
+        title: 'How would you describe your place?',
+        component: (
+          <>
+            <InputForm
+              hasValue={!!values.title}
+              name='title'
+              type='text'
+              placeholder='Place name'
+              register={getFieldProps}
+            />
+            <InputForm
+              hasValue={!!values.description}
+              name='description'
+              type='text'
+              inputType='textarea'
+              placeholder='Short and sweet works best!'
+              register={getFieldProps}
+            />
+          </>
+        )
+      };
+    }
+    if (step === STEPS.PRICE) {
+      return {
+        title: 'How would you describe your place?',
+        component: (
+          <InputForm
+            disabled={isLoading}
+            hasValue={!!values.price}
+            name='price'
+            type='number'
+            placeholder='Place price ($)'
+            register={getFieldProps}
+          />
+        )
+      };
+    }
     return {
       title: 'Which of these best describes your place?',
       component: (
@@ -115,16 +188,14 @@ function RentModal(): JSX.Element {
       isOpen={isOpen}
       title='Airbnb your home!'
       subtitle={renderSteps.title}
-      close={() => {
-        onCLose();
-        resetForm();
-        setStep(STEPS.CATEGORY);
-      }}
+      close={onResetForm}
     >
       {renderSteps.component}
       <Divider />
-      {backActionLabel !== null && <Button text={backActionLabel} type='button' onClick={onBack} />}
-      <Button text={nextActionLabel} type='button' onClick={onNext} />
+      {backActionLabel !== null && (
+        <Button disabled={isLoading} text={backActionLabel} type='button' onClick={onBack} />
+      )}
+      <Button text={nextActionLabel} disabled={isLoading} type='button' onClick={onNext} />
     </Modal>
   );
 }

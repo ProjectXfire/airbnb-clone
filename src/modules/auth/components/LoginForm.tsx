@@ -3,9 +3,7 @@
 import { Form, Formik } from 'formik';
 import { LoginSchema } from '@modules/auth/schemas';
 import { type LoginUserDto } from '@modules/auth/dtos';
-
-import { InputForm } from '@modules/auth/components';
-import { Button } from '@/shared/components';
+import { Button, InputForm } from '@/shared/components';
 
 interface Props {
   onSubmit: (values: LoginUserDto) => void;
