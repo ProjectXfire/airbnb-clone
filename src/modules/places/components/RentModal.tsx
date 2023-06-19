@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import { toast } from 'react-hot-toast';
 import { type CreateRentDto } from '@modules/places/dtos';
@@ -21,6 +22,7 @@ enum STEPS {
 }
 
 function RentModal(): JSX.Element {
+  const router = useRouter();
   const { isOpen, onCLose } = useRentModal();
   const [step, setStep] = useState<STEPS>(STEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,6 +47,7 @@ function RentModal(): JSX.Element {
           toast.error(error);
         } else {
           toast.success('Listing created!');
+          router.refresh();
           onResetForm();
         }
         setIsLoading(false);

@@ -1,0 +1,40 @@
+.listing-card-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.listing-card-container__img {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  & img {
+    object-fit: cover;
+    transition: all 200ms;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.listing-card-container__action-button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.listing-card-container__text {
+  font-weight: bold;
+  font-size: 0.9rem;
+  & > p:nth-of-type(2) {
+    color: var(--secondary-color);
+  }
+}
+
+.price-text {
+  display: flex;
+  gap: 5px;
+}
