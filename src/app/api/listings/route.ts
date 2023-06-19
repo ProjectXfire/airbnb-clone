@@ -1,6 +1,6 @@
 import { prisma } from '@shared/libs';
 import { NextResponse } from 'next/server';
-import { type Listing, Prisma } from '@prisma/client';
+import { type Listing } from '@prisma/client';
 import { type CreateRentDto } from '@/modules/places/dtos';
 import { getCurrentUser } from '@/shared/services';
 
@@ -36,10 +36,6 @@ export async function POST(req: Request): Promise<NextResponse<Listing | string>
     });
     return NextResponse.json(listing, { status: 201 });
   } catch (e) {
-    if (e instanceof Prisma.PrismaClientKnownRequestError) {
-      if (e.code === 'P2002')
-        return NextResponse.json('Email is already registered.', { status: 400 });
-    }
     return NextResponse.json('Error on register', { status: 500 });
   }
 }

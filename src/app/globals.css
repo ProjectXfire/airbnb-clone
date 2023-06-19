@@ -26,6 +26,13 @@
   margin: 0;
 }
 
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 a,
 button,
 textarea {
@@ -54,6 +61,8 @@ body {
 }
 
 main {
+  padding-top: 170px;
+  padding-bottom: 50px;
   max-width: var(--max-width);
   margin: auto;
 }

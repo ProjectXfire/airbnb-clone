@@ -1,0 +1,26 @@
+.heart-button-container {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin heart {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.white-heart {
+  @include heart;
+  color: var(--white-color);
+}
+
+.opacity-heart {
+  opacity: 0.5;
+}
+
+.red-heart {
+  @include heart;
+  color: var(--red-light-color);
+}
