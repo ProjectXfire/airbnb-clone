@@ -1,10 +1,12 @@
+'use client';
+
 import styles from '@modules/places/styles/Listings.module.scss';
-import { type Listing } from '@prisma/client';
 import { type UserModel } from '@/shared/models';
+import { type RentModel } from '@modules/places/models';
 import { ListingCard } from '@modules/places/components';
 
 interface Props {
-  listings: Listing[];
+  listings: RentModel[];
   user: UserModel | null;
 }
 

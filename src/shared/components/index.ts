@@ -13,4 +13,4 @@ export { default as Button } from './Button';
 export { default as Avatar } from './Avatar';
 export { default as InputForm } from './InputForm';
 export { default as Empty } from './Empty';
-export { default as HeartButton } from './HeartButton';
+export { default as ClientComponents } from './ClientComponents';

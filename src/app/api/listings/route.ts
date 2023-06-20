@@ -4,6 +4,15 @@ import { type Listing } from '@prisma/client';
 import { type CreateRentDto } from '@/modules/places/dtos';
 import { getCurrentUser } from '@/shared/services';
 
+export async function GET(req: Request): Promise<NextResponse<Listing[] | string>> {
+  try {
+    const listings = await prisma.listing.findMany({ orderBy: { createdAt: 'desc' } });
+    return NextResponse.json(listings, { status: 200 });
+  } catch (error) {
+    return NextResponse.json('Error on get data', { status: 500 });
+  }
+}
+
 export async function POST(req: Request): Promise<NextResponse<Listing | string>> {
   try {
     const currentUser = await getCurrentUser();

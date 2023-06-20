@@ -29,6 +29,7 @@
     "react-icons": "^4.9.0",
     "react-leaflet": "^4.2.1",
     "react-select": "^5.7.3",
+    "sharp": "^0.32.1",
     "world-countries": "^4.0.0",
     "yup": "^1.2.0",
     "zustand": "^4.3.8"

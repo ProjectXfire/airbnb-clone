@@ -5,12 +5,12 @@ import { type IconType } from 'react-icons';
 
 interface Props {
   onClick: (value: string) => void;
-  selected?: boolean;
+  selected: boolean;
   label: string;
   Icon: IconType;
 }
 
-function CategoryInput({ label, Icon, onClick, selected }: Props): JSX.Element {
+function CategoryInput({ label, Icon, onClick, selected = false }: Props): JSX.Element {
   const onSelect = (): void => {
     onClick(label);
   };

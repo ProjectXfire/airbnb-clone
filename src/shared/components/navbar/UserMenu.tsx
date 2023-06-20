@@ -1,13 +1,13 @@
 'use client';
 
-import { type UserModel } from '@/shared/models';
+import { type UserModel } from '@shared/models';
 import { signOut } from 'next-auth/react';
 import { useEffect, useRef, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import styles from '@shared/styles/navbar/UserMenu.module.scss';
-import { useRegisterModal, useLoginModal } from '@/modules/auth/hooks';
+import { useRegisterModal, useLoginModal } from '@modules/auth/hooks';
 import { Avatar, DropdownContainer } from '@shared/components';
-import { useRentModal } from '@/modules/places/hooks';
+import { useRentModal } from '@modules/places/hooks';
 
 interface Props {
   user: UserModel | null;

@@ -1,5 +1,3 @@
-'use client';
-
 import styles from '@shared/styles/Container.module.scss';
 
 interface Props {

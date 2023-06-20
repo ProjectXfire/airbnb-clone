@@ -3,7 +3,8 @@
 import styles from '@modules/places/styles/Location.module.scss';
 import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import { CountrySelect, LoadingMap } from '@modules/places/components';
+import CountrySelect from './CountrySelect';
+import LoadingMap from './LoadingMap';
 import { type CountryModel } from '@modules/places/models';
 
 interface Props {
