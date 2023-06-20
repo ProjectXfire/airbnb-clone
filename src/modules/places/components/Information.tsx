@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@modules/places/styles/Information.module.scss';
-import { Counter } from '@modules/places/components';
+import Counter from './Counter';
 
 interface Props {
   guestsValue: number;
@@ -10,7 +10,12 @@ interface Props {
   onChange: (value: number, typeValue: string) => void;
 }
 
-function Information({ guestsValue, roomsValue, bathroomsValue, onChange }: Props): JSX.Element {
+function Information({
+  guestsValue = 1,
+  roomsValue = 1,
+  bathroomsValue = 1,
+  onChange
+}: Props): JSX.Element {
   return (
     <div className={styles['info-container']}>
       <Counter

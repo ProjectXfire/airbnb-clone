@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@shared/styles/modal/Modal.module.scss';
 import { MdClose } from 'react-icons/md';
 import { type ReactNode, useRef } from 'react';

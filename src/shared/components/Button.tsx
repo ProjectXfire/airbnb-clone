@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@shared/styles/Button.module.scss';
 import { type MouseEvent } from 'react';
 

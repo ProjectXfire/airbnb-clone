@@ -1,7 +1,6 @@
 'use client';
 
 import styles from '@shared/styles/Empty.module.scss';
-import { useRouter } from 'next/navigation';
 import { Button } from '@shared/components';
 
 interface Props {
@@ -15,8 +14,6 @@ function EmptyListings({
   subtitle = 'Try changing or removing some filters',
   showReset
 }: Props): JSX.Element {
-  const router = useRouter();
-
   return (
     <div className={styles['empty-container']}>
       <div>

@@ -1,13 +1,13 @@
 'use client';
 
 import styles from '@modules/places/styles/Categories.module.scss';
-import { type CategoryModel } from '@/shared/models';
+import { type CategoryModel } from '@shared/models';
 import CategoryInput from './CategoryInput';
 
 interface Props {
   categories: CategoryModel[];
   categorySelected: string;
-  onClick: (value: string) => void;
+  onClick?: (value: string) => void;
 }
 
 function Categories({ categories, categorySelected, onClick }: Props): JSX.Element {
@@ -19,7 +19,7 @@ function Categories({ categories, categorySelected, onClick }: Props): JSX.Eleme
           label={cat.label}
           Icon={cat.Icon}
           onClick={(cat) => {
-            onClick(cat);
+            if (onClick) onClick(cat);
           }}
           selected={categorySelected === cat.label}
         />

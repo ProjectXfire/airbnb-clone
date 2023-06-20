@@ -6,11 +6,14 @@ import { useFormik } from 'formik';
 import { toast } from 'react-hot-toast';
 import { type CreateRentDto } from '@modules/places/dtos';
 import { RentSchema } from '@modules/places/schemas';
-import { categories } from '@/shared/utilities';
+import { categories } from '@shared/utilities';
 import { saveListing } from '@modules/places/services';
 import { useRentModal } from '@modules/places/hooks';
-import { Categories, Images, Information, Location } from '@modules/places/components';
-import { Button, Divider, InputForm, Modal } from '@/shared/components';
+import Categories from './Categories';
+import Images from './Images';
+import Location from './Location';
+import Information from './Information';
+import { Button, Divider, InputForm, Modal } from '@shared/components';
 
 enum STEPS {
   CATEGORY = 0,
@@ -26,7 +29,7 @@ function RentModal(): JSX.Element {
   const { isOpen, onCLose } = useRentModal();
   const [step, setStep] = useState<STEPS>(STEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
-  const { values, setFieldValue, resetForm, getFieldProps, handleSubmit, validateForm } =
+  const { values, resetForm, getFieldProps, handleSubmit, validateForm, setFieldValue } =
     useFormik<CreateRentDto>({
       initialValues: {
         category: '',

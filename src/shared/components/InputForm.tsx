@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@shared/styles/InputForm.module.scss';
 import { type FieldInputProps } from 'formik';
 import { type HTMLInputTypeAttribute } from 'react';

@@ -1,4 +1,4 @@
-function page(): JSX.Element {
+function Listing(): JSX.Element {
   return <div>page</div>;
 }
-export default page;
+export default Listing;

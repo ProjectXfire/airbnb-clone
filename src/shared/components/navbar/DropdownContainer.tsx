@@ -3,7 +3,7 @@
 import { type RefObject } from 'react';
 import styles from '@shared/styles/navbar/DropdownContainer.module.scss';
 import type { StoreApi, UseBoundStore } from 'zustand';
-import type { AuthModalStore } from '@/modules/auth/models';
+import type { ModalStore } from '@shared/models';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -13,7 +13,7 @@ interface Props {
 interface ItemProps {
   text: string;
   onClick?: () => void;
-  useModalStore?: UseBoundStore<StoreApi<AuthModalStore>>;
+  useModalStore?: UseBoundStore<StoreApi<ModalStore>>;
 }
 
 function DropdownContainer({ children, ddRef }: Props): JSX.Element {

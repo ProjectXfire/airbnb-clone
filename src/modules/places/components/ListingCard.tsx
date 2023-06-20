@@ -6,12 +6,14 @@ import NextImage from 'next/image';
 import { format } from 'date-fns';
 import { useMemo, type MouseEvent } from 'react';
 import { type UserModel } from '@/shared/models';
-import { type Reservation, type Listing } from '@prisma/client';
+import { type RentModel } from '../models';
+import { type Reservation } from '@prisma/client';
 import { useContries } from '@modules/places/hooks';
-import { Button, HeartButton } from '@/shared/components';
+import { Button } from '@shared/components';
+import { HeartButton } from '@modules/places/components';
 
 interface Props {
-  data: Listing;
+  data: RentModel;
   user: UserModel | null;
   disabled?: boolean;
   reservation?: Reservation;

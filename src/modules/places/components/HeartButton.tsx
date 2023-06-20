@@ -1,6 +1,9 @@
-import styles from '@shared/styles/HeartButton.module.scss';
+'use client';
+
+import styles from '@modules/places/styles/HeartButton.module.scss';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { type UserModel } from '../models';
+import { type UserModel } from '@shared/models';
+import { useFavorites } from '@modules/places/hooks';
 
 interface Props {
   id: string;
@@ -8,11 +11,16 @@ interface Props {
 }
 
 function HeartButton({ id, user }: Props): JSX.Element {
-  const hasFavorites = false;
-  const toggleFavorite = (): void => {};
+  const { hasFavorites, toggleFavorite } = useFavorites({ listingId: id, user });
 
   return (
-    <button className={styles['heart-button-container']} type='button' onClick={toggleFavorite}>
+    <button
+      className={styles['heart-button-container']}
+      type='button'
+      onClick={(e) => {
+        toggleFavorite(e);
+      }}
+    >
       <AiOutlineHeart className={styles['white-heart']} size={30} />
       <AiFillHeart
         className={`${hasFavorites ? styles['red-heart'] : styles['opacity-heart']}`}
