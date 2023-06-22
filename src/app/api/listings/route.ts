@@ -2,7 +2,7 @@ import { prisma } from '@shared/libs';
 import { NextResponse } from 'next/server';
 import { type Listing } from '@prisma/client';
 import { type CreateRentDto } from '@/modules/places/dtos';
-import { getCurrentUser } from '@/shared/services';
+import { getCurrentUser } from '@shared/services';
 
 export async function GET(req: Request): Promise<NextResponse<any[] | string>> {
   try {
