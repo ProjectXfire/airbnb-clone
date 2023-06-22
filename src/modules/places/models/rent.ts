@@ -1,3 +1,5 @@
+import { type UserModel } from '@/shared/models';
+
 export interface RentModel {
   id: string;
   userId: string;
@@ -11,4 +13,5 @@ export interface RentModel {
   bathroomCount: number;
   price: number;
   createdAt: string;
+  user: UserModel;
 }

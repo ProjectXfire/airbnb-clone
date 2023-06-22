@@ -1,0 +1,12 @@
+.listingCat-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  & p:nth-of-type(1) {
+    font-weight: bold;
+  }
+  & p:nth-of-type(2) {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+  }
+}

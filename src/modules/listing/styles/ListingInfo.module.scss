@@ -1,0 +1,22 @@
+.listingInfo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.listingInfo-container__host {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.listingInfo-container__rooms {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}

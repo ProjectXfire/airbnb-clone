@@ -1,7 +1,7 @@
 import './globals.css';
 import { nunito } from '@/shared/utilities';
 import { Navbar } from '@/shared/components';
-import { ToasterProvider } from '@/shared/providers';
+import { ToasterProvider } from '@shared/providers';
 import { getCurrentUser } from '@/shared/services';
 import { RegisterModal, LoginModal } from '@/modules/auth/components';
 import { RentModal } from '@/modules/places/components';
@@ -26,7 +26,7 @@ export default async function RootLayout({
         <LoginModal />
         <RentModal />
         <Navbar user={currentUser} />
-        <main>{children}</main>
+        {children}
       </body>
     </html>
   );

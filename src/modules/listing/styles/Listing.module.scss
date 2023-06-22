@@ -1,0 +1,14 @@
+.listing-container {
+  display: grid;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.listing-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  @media (min-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}

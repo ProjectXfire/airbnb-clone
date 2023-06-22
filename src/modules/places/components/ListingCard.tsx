@@ -5,10 +5,9 @@ import { useRouter } from 'next/navigation';
 import NextImage from 'next/image';
 import { format } from 'date-fns';
 import { useMemo, type MouseEvent } from 'react';
-import { type UserModel } from '@/shared/models';
-import { type RentModel } from '../models';
-import { type Reservation } from '@prisma/client';
-import { useContries } from '@modules/places/hooks';
+import { type UserModel } from '@shared/models';
+import { type IReservation, type RentModel } from '../models';
+import { useCountries } from '@shared/hooks';
 import { Button } from '@shared/components';
 import { HeartButton } from '@modules/places/components';
 
@@ -16,7 +15,7 @@ interface Props {
   data: RentModel;
   user: UserModel | null;
   disabled?: boolean;
-  reservation?: Reservation;
+  reservation?: IReservation;
   onAction?: (id: string) => void;
   actionLabel?: string;
   actionId?: string;
@@ -32,7 +31,7 @@ function ListingCard({
   reservation
 }: Props): JSX.Element {
   const router = useRouter();
-  const { getByValue } = useContries();
+  const { getByValue } = useCountries();
   const location = getByValue(data.locationValue);
 
   const handleCancel = (e: MouseEvent<HTMLButtonElement>): void => {

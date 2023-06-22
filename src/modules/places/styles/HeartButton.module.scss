@@ -5,22 +5,20 @@
   cursor: pointer;
 }
 
-@mixin heart {
+.heart {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
 }
 
 .white-heart {
-  @include heart;
   color: var(--white-color);
+}
+
+.red-heart {
+  color: var(--red-light-color);
 }
 
 .opacity-heart {
   opacity: 0.5;
-}
-
-.red-heart {
-  @include heart;
-  color: var(--red-light-color);
 }

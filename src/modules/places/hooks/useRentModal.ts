@@ -1,7 +1,7 @@
-import { type ModalStore } from '@/shared/models';
+import { type IModal } from '@/shared/models';
 import { create } from 'zustand';
 
-const useRentModal = create<ModalStore>((set) => ({
+const useRentModal = create<IModal>((set) => ({
   isOpen: false,
   onOpen: () => {
     set({ isOpen: true });

@@ -60,16 +60,17 @@ body {
   color: var(--white-color);
 }
 
-main {
-  padding-top: 170px;
-  padding-bottom: 50px;
-  max-width: var(--max-width);
-  margin: auto;
-}
-
 .leaflet-bottom,
 .leaflet-control,
 .leaflet-pane,
 .leaflet-top {
   z-index: 0 !important;
+}
+
+.rdrMonth {
+  width: 100% !important;
+}
+.rdrCalendarWrapper {
+  width: 100% !important;
+  font-size: 0.9rem !important;
 }

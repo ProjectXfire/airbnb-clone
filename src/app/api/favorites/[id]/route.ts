@@ -4,7 +4,7 @@ import { getCurrentUser } from '@/shared/services';
 import { NextResponse } from 'next/server';
 
 interface IParams {
-  listingid?: string;
+  id?: string;
 }
 
 export async function POST(
@@ -14,11 +14,11 @@ export async function POST(
   try {
     const currentUser = await getCurrentUser();
     if (!currentUser) return NextResponse.json('Invalid user', { status: 400 });
-    const { listingid } = params;
-    if (!listingid || typeof listingid !== 'string')
+    const { id } = params;
+    if (!id || typeof id !== 'string')
       return NextResponse.json('Invalid listing id', { status: 400 });
     const favoritesIds = [...(currentUser.favoritesIds || [])];
-    favoritesIds.push(listingid);
+    favoritesIds.push(id);
     const user = await prisma.user.update({
       where: { id: currentUser.id },
       data: { favoritesIds }
@@ -36,10 +36,10 @@ export async function DELETE(
   try {
     const currentUser = await getCurrentUser();
     if (!currentUser) return NextResponse.json('Invalid user', { status: 400 });
-    const { listingid } = params;
-    if (!listingid || typeof listingid !== 'string')
+    const { id } = params;
+    if (!id || typeof id !== 'string')
       return NextResponse.json('Invalid listing id', { status: 400 });
-    const favoritesIds = currentUser.favoritesIds.filter((favId) => favId !== listingid);
+    const favoritesIds = currentUser.favoritesIds.filter((favId) => favId !== id);
     const user = await prisma.user.update({
       where: { id: currentUser.id },
       data: { favoritesIds }

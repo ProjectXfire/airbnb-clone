@@ -1,0 +1,9 @@
+.heading-container {
+  margin: 10px 0px;
+  & h1 {
+    font-weight: bold;
+  }
+  & p {
+    color: var(--secondary-color);
+  }
+}
