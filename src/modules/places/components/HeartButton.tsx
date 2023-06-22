@@ -21,9 +21,11 @@ function HeartButton({ id, user }: Props): JSX.Element {
         toggleFavorite(e);
       }}
     >
-      <AiOutlineHeart className={styles['white-heart']} size={30} />
+      <AiOutlineHeart className={`${styles.heart} ${styles['white-heart']}`} size={30} />
       <AiFillHeart
-        className={`${hasFavorites ? styles['red-heart'] : styles['opacity-heart']}`}
+        className={`${styles.heart} ${
+          hasFavorites ? styles['red-heart'] : styles['opacity-heart']
+        }`}
         size={30}
       />
     </button>

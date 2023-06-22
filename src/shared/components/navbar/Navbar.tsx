@@ -1,6 +1,6 @@
 import { type UserModel } from '@/shared/models';
 import styles from '@shared/styles/navbar/Navbar.module.scss';
-import { Categories, Container, Divider, Logo, Search, UserMenu } from '@shared/components';
+import { Categories, Container, Logo, Search, UserMenu } from '@shared/components';
 
 interface Props {
   user: UserModel | null;
@@ -15,7 +15,6 @@ function Navbar({ user }: Props): JSX.Element {
           <Search />
           <UserMenu user={user} />
         </div>
-        <Divider />
       </Container>
       <Container>
         <Categories />

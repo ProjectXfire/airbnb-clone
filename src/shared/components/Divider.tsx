@@ -2,7 +2,11 @@
 
 import styles from '@shared/styles/Divider.module.scss';
 
-function Divider(): JSX.Element {
-  return <div className={styles.divider} />;
+interface Props {
+  noSpace?: boolean;
+}
+
+function Divider({ noSpace }: Props): JSX.Element {
+  return <div className={`${styles.divider} ${noSpace ? '' : styles['divider-margin']}`} />;
 }
 export default Divider;

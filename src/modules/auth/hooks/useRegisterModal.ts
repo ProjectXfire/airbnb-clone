@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { type ModalStore } from '@/shared/models';
+import { type IModal } from '@/shared/models';
 
-const useRegisterModal = create<ModalStore>((set) => ({
+const useRegisterModal = create<IModal>((set) => ({
   isOpen: false,
   onOpen: () => {
     set({ isOpen: true });

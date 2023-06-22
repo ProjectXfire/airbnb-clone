@@ -1,5 +1,3 @@
-'use client';
-
 import styles from '@shared/styles/Empty.module.scss';
 import { Button } from '@shared/components';
 

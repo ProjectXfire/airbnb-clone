@@ -1,0 +1,20 @@
+.listingReservation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  & > p {
+    padding: 15px 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 12px;
+  }
+}
+
+.listingReservation-container__calendar {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.listingReservation-container__totalPrice {
+  display: flex;
+  justify-content: space-between;
+}

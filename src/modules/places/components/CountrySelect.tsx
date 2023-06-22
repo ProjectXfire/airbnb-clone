@@ -3,7 +3,7 @@
 import styles from '@modules/places/styles/CountrySelect.module.scss';
 import Select from 'react-select';
 import { type CountryModel } from '@modules/places/models';
-import { useContries } from '@modules/places/hooks';
+import { useCountries } from '@shared/hooks';
 
 interface Props {
   value?: CountryModel;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 function CountrySelect({ value, onChange }: Props): JSX.Element {
-  const { getAll } = useContries();
+  const { getAll } = useCountries();
 
   return (
     <div style={{ color: 'black' }}>
