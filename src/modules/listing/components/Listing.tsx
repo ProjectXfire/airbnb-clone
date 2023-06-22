@@ -60,7 +60,8 @@ function Listing({ listing, user, reservations = [] }: Props): JSX.Element {
     const { hasError, error } = await saveReservations(
       totalPrice,
       dateRange.startDate,
-      dateRange.endDate
+      dateRange.endDate,
+      listing.id
     );
     if (hasError) {
       toast.error(error);
