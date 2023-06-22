@@ -4,7 +4,7 @@ import styles from '../styles/Listing.module.scss';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { type RentModel, type IReservation } from '@/modules/places/models';
+import { type RentModel, type IReservation } from '@modules/places/models';
 import { categories } from '@shared/utilities';
 import { type DateRange, type UserModel } from '@shared/models';
 import { saveReservations } from '../services';

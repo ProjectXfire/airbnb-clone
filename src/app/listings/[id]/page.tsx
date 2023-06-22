@@ -1,7 +1,7 @@
 import { getListingById } from '@modules/listing/services';
 import { getCurrentUser } from '@shared/services';
 import { Container, Empty } from '@shared/components';
-import { Listing } from '@/modules/listing/components';
+import { Listing } from '@modules/listing/components';
 
 interface IParams {
   id: string;
