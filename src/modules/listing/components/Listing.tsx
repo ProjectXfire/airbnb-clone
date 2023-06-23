@@ -3,6 +3,7 @@
 import styles from '../styles/Listing.module.scss';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import { type RentModel, type IReservation } from '@modules/places/models';
 import { categories } from '@shared/utilities';
@@ -28,6 +29,7 @@ interface Props {
 function Listing({ listing, user, reservations = [] }: Props): JSX.Element {
   const { id, locationValue, imageSrc, title, description, roomCount, guestCount, bathroomCount } =
     listing;
+  const router = useRouter();
   const { onOpen } = useLoginModal();
   const [loading, setLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
@@ -66,7 +68,9 @@ function Listing({ listing, user, reservations = [] }: Props): JSX.Element {
     if (hasError) {
       toast.error(error);
     } else {
+      setDateRange(initialDateRange);
       toast.success('Listing reserved!');
+      router.push('/trips');
     }
     setLoading(false);
   };

@@ -14,6 +14,12 @@ interface IGetReservations {
   error: string | null;
 }
 
+interface IReservationsParams {
+  userId?: string;
+  listingId?: string;
+  authorId?: string;
+}
+
 export async function saveReservations(
   totalPrice: number,
   start: Date,
@@ -42,13 +48,10 @@ export async function saveReservations(
   }
 }
 
-export async function getReservation(
-  userId?: string,
-  listingId?: string,
-  authorId?: string
-): Promise<IGetReservations> {
+export async function getReservations(params: IReservationsParams): Promise<IGetReservations> {
   try {
     const queries = [];
+    const { userId, listingId, authorId } = params;
     if (userId) queries.push(`userId=${userId}`);
     if (listingId) queries.push(`listingId=${listingId}`);
     if (authorId) queries.push(`authorId=${authorId}`);
