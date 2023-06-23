@@ -1,19 +1,21 @@
 'use client';
 
+import styles from '@shared/styles/navbar/UserMenu.module.scss';
+import { MdMenu } from 'react-icons/md';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { type UserModel } from '@shared/models';
 import { signOut } from 'next-auth/react';
-import { useEffect, useRef, useState } from 'react';
-import { MdMenu } from 'react-icons/md';
-import styles from '@shared/styles/navbar/UserMenu.module.scss';
 import { useRegisterModal, useLoginModal } from '@modules/auth/hooks';
-import { Avatar, DropdownContainer } from '@shared/components';
 import { useRentModal } from '@modules/places/hooks';
+import { Avatar, DropdownContainer } from '@shared/components';
 
 interface Props {
   user: UserModel | null;
 }
 
 function UserMenu({ user }: Props): JSX.Element {
+  const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLButtonElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,6 +73,7 @@ function UserMenu({ user }: Props): JSX.Element {
                   text='My Trips'
                   onClick={() => {
                     setIsMenuOpen(false);
+                    router.push('/trips');
                   }}
                 />
                 <DropdownContainer.DropdownItemModal
