@@ -6,7 +6,14 @@ import { getCurrentUser } from '@shared/services';
 
 export async function GET(req: Request): Promise<NextResponse<any[] | string>> {
   try {
-    const listings = await prisma.listing.findMany({ orderBy: { createdAt: 'desc' } });
+    const { searchParams } = new URL(req.url);
+    const query: Record<string, any> = {};
+    const userId = searchParams.get('userId');
+    if (userId) query.userId = userId;
+    const listings = await prisma.listing.findMany({
+      orderBy: { createdAt: 'desc' },
+      where: query
+    });
     const listingsTransform = listings.map((li) => ({
       ...li,
       createdAt: li.createdAt.toISOString()
