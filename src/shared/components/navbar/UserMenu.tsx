@@ -86,6 +86,7 @@ function UserMenu({ user }: Props): JSX.Element {
                   text='My reservations'
                   onClick={() => {
                     setIsMenuOpen(false);
+                    router.push('/reservations');
                   }}
                 />
                 <DropdownContainer.DropdownItemModal

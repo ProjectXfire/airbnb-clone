@@ -1,9 +1,9 @@
 'use client';
 
-import styles from '@modules/places/styles/Listings.module.scss';
 import { type UserModel } from '@/shared/models';
 import { type RentModel } from '@modules/places/models';
 import { ListingCard } from '@modules/places/components';
+import { CardsContainer } from '@/shared/components';
 
 interface Props {
   listings: RentModel[];
@@ -12,11 +12,11 @@ interface Props {
 
 function Listings({ listings, user }: Props): JSX.Element {
   return (
-    <ul className={styles['listings-container']}>
+    <CardsContainer>
       {listings.map((item) => (
         <ListingCard key={item.id} data={item} user={user} />
       ))}
-    </ul>
+    </CardsContainer>
   );
 }
 export default Listings;

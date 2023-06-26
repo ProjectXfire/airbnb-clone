@@ -15,3 +15,4 @@ export { default as InputForm } from './InputForm';
 export { default as Empty } from './Empty';
 export { default as ClientComponents } from './ClientComponents';
 export { default as Heading } from './Heading';
+export { default as CardsContainer } from './CardsContainer';

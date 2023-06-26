@@ -1,6 +1,6 @@
 import { getReservations } from '@modules/listing/services';
 import { getCurrentUser } from '@shared/services';
-import { Empty, Container } from '@shared/components';
+import { Empty, Container, Heading } from '@shared/components';
 import { Trips } from '@modules/trips/components';
 
 async function page(): Promise<JSX.Element> {
@@ -14,6 +14,7 @@ async function page(): Promise<JSX.Element> {
 
   return (
     <Container otherPage>
+      <Heading title='Trips' subtitle='Where you have been and where you are going?' />
       <Trips reservations={data} user={currentUser} />
     </Container>
   );

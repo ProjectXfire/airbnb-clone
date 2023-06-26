@@ -1,20 +1,20 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { type UserModel } from '@shared/models';
 import { type IReservation } from '@modules/places/models';
-import { removeReservation } from '../services';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { type UserModel } from '@shared/models';
+import { removeReservation } from '../services';
+import { CardsContainer } from '@/shared/components';
 import { ListingCard } from '@modules/places/components';
-import { CardsContainer } from '@shared/components';
 
 interface Props {
-  reservations: IReservation[];
   user: UserModel;
+  reservations: IReservation[];
 }
 
-function Trips({ reservations, user }: Props): JSX.Element {
+function Reservations({ user, reservations }: Props): JSX.Element {
   const [deletingId, setDeletingId] = useState('');
   const router = useRouter();
 
@@ -44,11 +44,11 @@ function Trips({ reservations, user }: Props): JSX.Element {
             onAction={(id) => {
               onCancel(id);
             }}
-            actionLabel='Cancel reservation'
+            actionLabel='Cancel guest reservation'
           />
         ))}
       </CardsContainer>
     </section>
   );
 }
-export default Trips;
+export default Reservations;

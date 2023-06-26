@@ -33,7 +33,7 @@ export async function GET(req: Request, { params }: any): Promise<any> {
     const query: any = {};
     if (listingId) query.listingId = listingId;
     if (userId) query.userId = userId;
-    if (authorId) query.listingId = { userId: authorId };
+    if (authorId) query.listing = { userId: authorId };
     const reservations = await prisma.reservation.findMany({
       where: query,
       include: { listing: true },
