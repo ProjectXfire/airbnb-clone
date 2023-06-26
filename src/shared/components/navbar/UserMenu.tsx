@@ -80,6 +80,7 @@ function UserMenu({ user }: Props): JSX.Element {
                   text='My Favorites'
                   onClick={() => {
                     setIsMenuOpen(false);
+                    router.push('/favorites');
                   }}
                 />
                 <DropdownContainer.DropdownItemModal

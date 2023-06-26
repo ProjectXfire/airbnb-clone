@@ -1,6 +1,28 @@
 import axios from 'axios';
-import { type UserModel } from '@/shared/models';
+import { type UserModel } from '@shared/models';
+import { type RentModel } from '../models';
 import { handleErrorMessage } from '@/shared/utilities';
+
+interface IGetFavorites<T> {
+  error: string | null;
+  data: T;
+}
+
+export async function getFavorites(id: string): Promise<IGetFavorites<RentModel[]>> {
+  try {
+    const res = await axios.get(`${process.env.NEXTAUTH_URL ?? ''}/api/favorites/${id}`);
+    return {
+      error: null,
+      data: res.data
+    };
+  } catch (error) {
+    const errorMessage = handleErrorMessage(error);
+    return {
+      error: errorMessage,
+      data: []
+    };
+  }
+}
 
 export async function addToFAvorite(listingid: string): Promise<UserModel> {
   try {
