@@ -1,10 +1,28 @@
 import { prisma } from '@shared/libs';
-import { type User } from '@prisma/client';
+import { type User, type Listing } from '@prisma/client';
 import { getCurrentUser } from '@/shared/services';
 import { NextResponse } from 'next/server';
 
 interface IParams {
   id?: string;
+}
+
+export async function GET(
+  req: Request,
+  { params }: { params: IParams }
+): Promise<NextResponse<Listing[] | string>> {
+  try {
+    const { id } = params;
+    if (!id || typeof id !== 'string') return NextResponse.json('Invalid user id', { status: 400 });
+    const user = await prisma.user.findUnique({ where: { id } });
+    if (!user) return NextResponse.json('User not exist', { status: 400 });
+    const favorites = await prisma.listing.findMany({
+      where: { id: { in: [...(user.favoritesIds || [])] } }
+    });
+    return NextResponse.json(favorites, { status: 200 });
+  } catch (error) {
+    return NextResponse.json('Error on get favorites', { status: 500 });
+  }
 }
 
 export async function POST(
