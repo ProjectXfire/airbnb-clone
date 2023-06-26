@@ -31,3 +31,18 @@ export async function GET(
     return NextResponse.json('Error on get listing', { status: 500 });
   }
 }
+
+export async function DELETE(
+  req: Request,
+  { params }: { params: IParams }
+): Promise<NextResponse<any | string>> {
+  try {
+    const { id } = params;
+    if (!id || typeof id !== 'string')
+      return NextResponse.json('Invalid listing id', { status: 400 });
+    await prisma.listing.delete({ where: { id } });
+    return NextResponse.json('Listing removed', { status: 200 });
+  } catch (error) {
+    return NextResponse.json('Error on get listing', { status: 500 });
+  }
+}

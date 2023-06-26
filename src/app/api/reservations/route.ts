@@ -24,7 +24,7 @@ export async function POST(req: Request): Promise<NextResponse<Listing | string>
   }
 }
 
-export async function GET(req: Request, { params }: any): Promise<any> {
+export async function GET(req: Request): Promise<any> {
   try {
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get('userId');

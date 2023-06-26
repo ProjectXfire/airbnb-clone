@@ -94,6 +94,7 @@ function UserMenu({ user }: Props): JSX.Element {
                   text='My properties'
                   onClick={() => {
                     setIsMenuOpen(false);
+                    router.push('/properties');
                   }}
                 />
                 <DropdownContainer.DropdownItemModal
