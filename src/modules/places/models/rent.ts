@@ -15,3 +15,14 @@ export interface RentModel {
   createdAt: string;
   user: UserModel;
 }
+
+export interface IListingsParams {
+  userId?: string;
+  guestCount?: number;
+  roomCount?: number;
+  bathroomCount?: number;
+  startDate?: string;
+  endDate?: string;
+  locationValue?: string;
+  category?: string;
+}

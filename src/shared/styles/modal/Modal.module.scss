@@ -5,7 +5,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba($color: #000000, $alpha: 0.5);
-  z-index: 1;
+  z-index: 2;
 }
 
 .modal-container {
@@ -31,6 +31,9 @@
 
 .modal-header {
   padding: 5px 0px;
+  & p {
+    color: var(--secondary-color);
+  }
 }
 
 .modal-content {

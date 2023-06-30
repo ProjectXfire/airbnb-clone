@@ -7,8 +7,8 @@ interface Props {
   title: string;
   subtitle: string;
   value: number;
-  valueType: string;
-  onChange: (value: number, typeValue: string) => void;
+  valueType?: string;
+  onChange: (value: number, typeValue?: string) => void;
 }
 
 function Counter({ title, subtitle, value, onChange, valueType }: Props): JSX.Element {

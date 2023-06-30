@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { type RentModel } from '@modules/places/models';
+import { type IListingsParams, type RentModel } from '@modules/places/models';
 import { type CreateRentDto } from '@modules/places/dtos';
 import { handleErrorMessage } from '@/shared/utilities';
 
@@ -9,16 +9,28 @@ interface ReturnValue<T> {
   error: string | null;
 }
 
-interface IListingsParams {
-  userId?: string;
-}
-
 export async function getListings(params?: IListingsParams): Promise<ReturnValue<RentModel[]>> {
   try {
     if (params && Object.keys(params).length > 0) {
       const setQueries = [];
-      const { userId } = params;
+      const {
+        userId,
+        category,
+        bathroomCount,
+        guestCount,
+        roomCount,
+        locationValue,
+        endDate,
+        startDate
+      } = params;
       if (userId) setQueries.push(`userId=${userId}`);
+      if (category) setQueries.push(`category=${category}`);
+      if (bathroomCount) setQueries.push(`bathroomCount=${bathroomCount}`);
+      if (guestCount) setQueries.push(`guestCount=${guestCount}`);
+      if (roomCount) setQueries.push(`roomCount=${roomCount}`);
+      if (locationValue) setQueries.push(`locationValue=${locationValue}`);
+      if (endDate) setQueries.push(`endDate=${endDate}`);
+      if (startDate) setQueries.push(`startDate=${startDate}`);
       const query = setQueries.join('&');
       const res = await axios.get<RentModel[]>(
         `${process.env.NEXTAUTH_URL ?? ''}/api/listings?${query}`

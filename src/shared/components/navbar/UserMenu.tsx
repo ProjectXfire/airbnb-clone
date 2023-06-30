@@ -54,14 +54,14 @@ function UserMenu({ user }: Props): JSX.Element {
     <>
       <div className={styles['user-menu']}>
         <div className={styles['user-menu__items']}>
-          <button type='button' className={styles['']} onClick={onRent}>
+          <button type='button' onClick={onRent}>
             Airbnb your home
           </button>
-          <button ref={menuRef} type='button' className={styles['']} onClick={handleMenu}>
+          <button ref={menuRef} type='button' onClick={handleMenu}>
             <MdMenu />
             <Avatar avatar={user?.image} />
           </button>
-          <button type='button'>
+          <button type='button' ref={menuRef} onClick={handleMenu}>
             <MdMenu />
           </button>
         </div>
