@@ -1,38 +1,35 @@
 'use client';
 
-import { CiSearch } from 'react-icons/ci';
 import styles from '@shared/styles/navbar/Search.module.scss';
+import { CiSearch } from 'react-icons/ci';
+import { useSearchModal } from '@modules/places/hooks';
 
 function Search(): JSX.Element {
+  const { onOpen } = useSearchModal();
+
   return (
-    <div className={styles.search}>
-      <button className={`${styles['search-action']}`} type='button'>
-        Anywhere
-      </button>
+    <button className={styles.search} type='button' onClick={onOpen}>
+      <div className={`${styles['search-action']}`}>Anywhere</div>
       <span className={styles.separator} />
-      <button className={`${styles['search-action']}`} type='button'>
-        Any week
-      </button>
+      <div className={`${styles['search-action']}`}>Any week</div>
       <span className={styles.separator} />
-      <button
-        type='button'
+      <div
         className={`${styles['search-action']} ${styles['search-icon-lg']}  ${styles['search-icon']}`}
       >
         Add guests
         <div>
           <CiSearch />
         </div>
-      </button>
-      <button
-        type='button'
+      </div>
+      <div
         className={`${styles['search-action']} ${styles['search-icon-md']} ${styles['search-icon']}`}
       >
         Anywhere
         <div>
           <CiSearch />
         </div>
-      </button>
-    </div>
+      </div>
+    </button>
   );
 }
 export default Search;

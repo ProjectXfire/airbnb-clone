@@ -1,10 +1,10 @@
 import './globals.css';
 import { nunito } from '@/shared/utilities';
-import { Navbar } from '@/shared/components';
 import { ToasterProvider } from '@shared/providers';
-import { getCurrentUser } from '@/shared/services';
-import { RegisterModal, LoginModal } from '@/modules/auth/components';
-import { RentModal } from '@/modules/places/components';
+import { getCurrentUser } from '@shared/services';
+import { Navbar } from '@shared/components';
+import { RegisterModal, LoginModal } from '@modules/auth/components';
+import { RentModal, SearchModal } from '@modules/places/components';
 
 export const metadata = {
   title: 'Airbnb clone',
@@ -25,6 +25,7 @@ export default async function RootLayout({
         <RegisterModal />
         <LoginModal />
         <RentModal />
+        <SearchModal />
         <Navbar user={currentUser} />
         {children}
       </body>

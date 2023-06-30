@@ -117,7 +117,7 @@ function RentModal(): JSX.Element {
             roomsValue={values.roomCount}
             bathroomsValue={values.bathroomCount}
             onChange={(value, valueType) => {
-              setFieldValue(valueType, value, false);
+              if (valueType) setFieldValue(valueType, value, false);
             }}
           />
         )

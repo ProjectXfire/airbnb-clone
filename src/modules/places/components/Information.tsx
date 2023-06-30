@@ -7,7 +7,7 @@ interface Props {
   guestsValue: number;
   roomsValue: number;
   bathroomsValue: number;
-  onChange: (value: number, typeValue: string) => void;
+  onChange: (value: number, typeValue?: string) => void;
 }
 
 function Information({
